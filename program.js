@@ -1,27 +1,36 @@
-console.log("Hello world");
-let a = 'sdf';
-console.log("value a=%f some %f other",5,6);
-if (a==5)
-    console.log("value a=%f some other",5);
-    console.log("a="+6);
+var arr=[0,0,0,1,1,1,0];
+/*function checkInput(shot) {
+    let reg = /^[1-7]$/;
+    if (shot.match(reg)) 
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}*/
 
-switch (a){
-    case 'sdf':{
-        console.log("Nope");
-        break;
-    }
-    case 'a':{
-        console.log("Nope1");
-        break;
-    }
-}
+
+
 while(true){
-    let b = prompt();
-    console.log(b);
-    if (b==='q'){
+    let shot = prompt();
+    //checkInput(shot);
+    console.log(shot);
+    if (shot !== 'q')
+    {
+        if (arr[shot - 1]===1){
+            alert('Damaged!');
+        }
+        else
+        {
+        alert('Not Damaged!');
+        }
+    }
+    else
+    {
         break;
     }
-
 }
 // var arr=[5,6,7,8,9];
 // for (var i in arr){
