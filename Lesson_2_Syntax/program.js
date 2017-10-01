@@ -8,7 +8,7 @@ var damageCount = 0;
 }*/
 
 function checkInput(num) {
-    let reg = /^[1-7]$|q/;
+    let reg = /^[1-7q]$/;
     if (num.match(reg))
     {
         //if (checkShot(shotMap, num) !== -1)
