@@ -2,16 +2,10 @@
 //Calculating age
 
 function getAge() {
-    let daysPerYear = 365;
-    let daysPerMonth = 30;
     var birthDayDate;
 
     function getBirthdayDate (date) {
         return Date.parse(date);
-    }
-
-    function getNumberTimeUnits(unit, num) {
-        return Math.floor(unit / num);
     }
 
     while (birthDayDate === NaN || !birthDayDate) {
@@ -19,13 +13,15 @@ function getAge() {
     }
 
     let currentTime = Date.now();
-    let allDays = Math.floor((currentTime - birthDayDate) / (1000*60*60*24));
-    let years = getNumberTimeUnits (allDays, daysPerYear)
-    let daysInterval = allDays - 365 * years;
-    let months = getNumberTimeUnits(daysInterval, daysPerMonth);
-    let days = daysInterval - months * daysPerMonth;
+	let dateDiff = new Date(currentTime - birthDayDate);
+	let years = dateDiff.getFullYear() - 1970;
+	let months = dateDiff.getMonth();
+	let days = dateDiff.getDate();
+	let hours = dateDiff.getHours();
+	let minutes = dateDiff.getMinutes();
+	let seconds = dateDiff.getSeconds();
 
-    alert (years + ' years, ' + months + ' months, ' + days + ' days.');
+    alert(years + ' years, ' + months + ' months, ' + days + ' days, ' + hours + ' hours, ' + minutes + ' ,minutes, ' + seconds + ' seconds.');
 }
 
 //Validating e-mail
