@@ -1,3 +1,15 @@
+var wordsArray = ['кот', 'ток', 'токк', 'липа', 'трос', 'полковник', 'пила', 'клоповник', 'торс', 'сорт'];
+var obj = {};
+for (i = 0; i < wordsArray.length; i++) {
+    var propertyName = wordsArray[i].split('').sort().join('');
+    if (obj[propertyName]) {
+        obj[propertyName] += wordsArray[i] + ', ';
+    }
+    else {
+        obj[propertyName] = wordsArray[i] + ', ';
+    }
+}
+console.log(obj);
 
 //Calculating age
 
