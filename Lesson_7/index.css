@@ -1,0 +1,36 @@
+.container { 
+	max-width: 1170px; 
+	margin: 50px auto; 
+	box-sizing: border-box; 
+	min-height: calc(100vh - 100px); 
+	position: relative; 
+} 
+
+.bag { 
+	width: 400px; 
+	height: 400px; 
+	position: absolute; 
+	background: url(img/dziadekmroz.png) no-repeat center; 
+	background-size: contain; 
+	left: 0; 
+	bottom: 0; 
+} 
+
+.box { 
+	width: 150px; 
+	height: 150px; 
+	position: absolute; 
+	bottom: 0; 
+	background: url(img/gift.png) no-repeat center; 
+	background-size: contain; 
+} 
+.box-1 { 
+	right: 0; 
+} 
+.box-2 { 
+	right: 180px; 
+} 
+.box-3 { 
+	right: 75px; 
+	bottom: 180px; 
+}

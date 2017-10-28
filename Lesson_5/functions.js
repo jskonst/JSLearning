@@ -1,17 +1,15 @@
-let arr = ['кот', 'ток', 'костер', 'сектор', 'токк', 'владение', 'давление']; 
-let obj = {};
+let arr = ['кот', 'ток', 'киборг', 'гробик', 'костер', 'ретсок', 'сектор']; 
+let obj = {}; 
 arr.forEach((item, index) => { 
 	let sorted = item.split('').sort().join(''); 
-	obj[sorted] = []; 
-}); 
-arr.forEach((item, index) => { 
-	for (let key in obj) { 
-		if (item.split('').sort().join('') === key) { 
-			obj[key].push(item); 
-		} 
+	if (obj[sorted]) { 
+		obj[sorted].push(item); 
+	} 
+	else { 
+		obj[sorted] = []; 
+		obj[sorted].push(item); 
 	} 
 }); 
-console.log(obj); 
 
 // Email regex 
 let re = /^([0-9a-z]([-\.\w]*[0-9a-z])@([0-9a-z][-\w]*[0-9a-z]\.)+[a-z]{2,9})$/i; 
