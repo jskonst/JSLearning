@@ -1,6 +1,7 @@
 var express = require("express");
 
 var app = express();
+var router = express.Router();
 
 app.use(express.static(__dirname + "/clientApp"));
 // Загружаем модуль файловой системы
@@ -18,16 +19,19 @@ const hostname = '127.0.0.1';
 const port = 3000; //80
 const ports = 3003; //443
 
-// app.listen(port);
-
 var httpServer = http.createServer(app);
 var httpsServer = https.createServer(credentials, app);
 
 httpServer.listen(port);
 httpsServer.listen(ports);
 
-app.get('/layout', function(req,resp){
-    
+app.use('/layout', router);
+
+router.route('/').get(function(req,resp){
+    resp.json(getLayout());
+});
+
+function getLayout(){
    const initPos = { 
         "shipTypes": { 
           "carrier": { 
@@ -59,6 +63,5 @@ app.get('/layout', function(req,resp){
           { "ship": "destroyer", "positions": [[0,8], [0,9]] } 
         ] 
     };
-      resp.json(initPos);
-});
-
+    return initPos;
+}
