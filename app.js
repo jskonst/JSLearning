@@ -4,64 +4,72 @@ var app = express();
 var router = express.Router();
 
 app.use(express.static(__dirname + "/clientApp"));
-// Загружаем модуль файловой системы
 var fs = require('fs');
 
-var credentials = {
-    // key: fs.readFileSync('./tmpSert/key.pem'),
-    // cert: fs.readFileSync('./tmpSert/certificate.pem')
-  };
-
 const http = require('http');
-const https = require('https');
 
 const hostname = '127.0.0.1';
-const port = 3000; //80
-const ports = 3003; //443
+const port = 3000;
 
 var httpServer = http.createServer(app);
-var httpsServer = https.createServer(credentials, app);
 
 httpServer.listen(port);
-httpsServer.listen(ports);
 
-app.use('/layout', router);
+app.use('/calendar', router);
 
 router.route('/').get(function(req,resp){
-    resp.json(getLayout());
+    setTimeout(
+      function(){
+        resp.json(getCalendar())
+      },
+      5000);
 });
 
-function getLayout(){
-   const initPos = { 
-        "shipTypes": { 
-          "carrier": { 
-            "size": 5, 
-            "count": 1 
-          }, 
-          "battleship": { 
-            "size": 4, 
-            "count": 1 
-          }, 
-          "cruiser": { 
-            "size": 3, 
-            "count": 1 
-          }, 
-          "submarine": { 
-            "size": 3, 
-            "count": 1 
-          }, 
-          "destroyer": { 
-            "size": 2, 
-            "count": 2 
-          } 
-        },"layout": [ 
-          { "ship": "carrier", "positions": [[2,9], [3,9], [4,9], [5,9], [6,9]] }, 
-          { "ship": "battleship", "positions": [[5,2], [5,3], [5,4], [5,5]] }, 
-          { "ship": "cruiser", "positions": [[8,1], [8,2], [8,3]] }, 
-          { "ship": "submarine", "positions": [[3,0], [3,1], [3,2]] }, 
-          { "ship": "destroyer", "positions": [[0,0], [1,0]] }, 
-          { "ship": "destroyer", "positions": [[0,8], [0,9]] } 
-        ] 
-    };
-    return initPos;
+function getCalendar(){
+   const calendar = 
+    {
+      "January": {
+          "1-6":  {"rest": true, "n": "Новый год"},
+          "7":    {"rest": true, "n": "Рождество Христово"},
+          "8":    {"rest": true, "n": "Новый год"}
+      },
+  
+      "February": {
+          "22": {"rest": false},
+          "23": {"rest": true, "n": "День защитника Отечества"}
+      },
+  
+      "March": {
+          "7": {"rest": false},
+          "8": {"rest": true, "n": "Международный женский день"},
+          "9": {"rest": true}
+      },
+  
+      "April": {
+          "28": {"rest": false},
+          "30": {"rest": true}
+      },
+  
+      "May": {
+          "1": {"rest": true, "n": "Праздник Весны и Труда"},
+          "2": {"rest": true},
+          "9": {"rest": true, "n": "День Победы"}
+      },
+  
+      "June": {
+          "9": {"rest": false},
+          "11": {"rest": true},
+          "12": {"rest": true, "n": "День России"}
+      },
+  
+      "November": {
+          "5": {"rest": true}
+      },
+  
+      "December": {
+          "29": {"rest": false},
+          "31": {"rest": true}
+      }
+};
+    return calendar;
 }
